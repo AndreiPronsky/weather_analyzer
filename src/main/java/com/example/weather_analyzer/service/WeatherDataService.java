@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface WeatherDataService {
 
-    void save(WeatherDataDto dto) throws JsonProcessingException, InterruptedException;
+    void save() throws JsonProcessingException;
 
     WeatherDataDto getLatest();
 

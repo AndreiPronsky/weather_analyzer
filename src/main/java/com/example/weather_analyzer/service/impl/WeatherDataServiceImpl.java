@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,18 +30,13 @@ public class WeatherDataServiceImpl implements WeatherDataService {
     private final WeatherClient client;
     private final ObjectMapper objectMapper;
 
-    private final Long millisBetweenRequests;
-
     @Override
-    public void save(WeatherDataDto dto) throws JsonProcessingException, InterruptedException {
-
-        while (true) {
+    @Scheduled(fixedRateString = "${TIME_BETWEEN_REQUESTS}")
+    public void save() throws JsonProcessingException {
             String response = client.getCurrent();
             WeatherDataDto extracted = objectMapper.readValue(response, WeatherDataDto.class);
             repository.save(mapper.toEntity(extracted));
             log.info("SAVED current {}", extracted);
-            Thread.sleep(millisBetweenRequests);
-        }
     }
 
     @Override
