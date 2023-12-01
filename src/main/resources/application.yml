@@ -1,1 +1,16 @@
+server:
+  port: ${SERVICE_SERVER_PORT}
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    password: ${SERVICE_DB_PASSWORD}
+    username: ${SERVICE_DB_USERNAME}
+    url: ${SERVICE_DB_URL}
+    driver-class-name: org.postgresql.Driver
+clients:
+  weather-client: ${WEATHER_CLIENT_URL}
 

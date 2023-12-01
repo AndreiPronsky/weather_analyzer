@@ -2,6 +2,8 @@ package com.example.weather_analyzer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 public class WeatherAnalyzerApplication {
@@ -10,4 +12,8 @@ public class WeatherAnalyzerApplication {
         SpringApplication.run(WeatherAnalyzerApplication.class, args);
     }
 
+    @Bean
+    public WebClient webClient() {
+        return WebClient.create();
+    }
 }
