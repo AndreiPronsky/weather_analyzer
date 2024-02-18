@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://weather-db:5432/weather_data
+    driver-class-name: org.postgresql.Driver
+clients:
+  weather-client: ${WEATHER_CLIENT_URL}
+
